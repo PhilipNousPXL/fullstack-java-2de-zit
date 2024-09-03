@@ -1,0 +1,29 @@
+<div style="display: flex; justify-content: center; margin-top: 150px">
+  <div>
+    <h2>Login on the sustainable E-commerce store!</h2>
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+      <input type="text" placeholder="Username"
+             name="username" [(ngModel)]="username"
+             #usernameRef="ngModel"
+             required pattern="^[a-zA-Z]+$">
+
+      <br>
+      <small *ngIf="usernameRef.errors?.['required'] && usernameRef.touched">A username is required!</small>
+      <small *ngIf="usernameRef.errors?.['pattern'] && usernameRef.touched">Only normal characters are allowed!</small>
+      <br>
+
+      <input type="password" placeholder="Password"
+             name="password" [(ngModel)]="password"
+             #passwordRef="ngModel"
+             required minlength="8">
+
+      <br>
+      <small *ngIf="passwordRef.errors?.['required'] && passwordRef.touched">A password is required!</small>
+      <small *ngIf="passwordRef.errors?.['minlength'] && passwordRef.touched">The password must be 8 characters or
+        longer!</small>
+      <br>
+
+      <button class="btn btn-success btn-block" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+    </form>
+  </div>
+</div>

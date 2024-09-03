@@ -1,0 +1,62 @@
+<mat-sidenav-container style="height: 100%">
+
+  <mat-sidenav mode="side" opened="true" style="width: 18%;">
+    <p style="margin-top: 20px" class="filter-title">Search</p>
+    <div class="filter-menu">
+      <mat-form-field appearance="outline" style="width: 200px">
+        <mat-label>Search</mat-label>
+        <input matInput [(ngModel)]="keyWordSearch">
+      </mat-form-field>
+      <button (click)="filterName()" mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+
+    <hr>
+
+    <div class="filter-menu" style="margin-top: 20px">
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="filterCategory" name="ee">
+          <mat-option [value]="undefined">All categories</mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category">{{category | titlecase}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <p class="filter-title">Sustainability criteria</p>
+    <mat-checkbox *ngFor="let type of sustainabilityTypes"
+                  (change)="updateSustainabilityTypeFilter($event.checked, type)">
+      {{type | titlecase | replace: '_' : ' '}}
+    </mat-checkbox>
+
+    <br>
+
+    <p class="filter-title">Price</p>
+    <div class="filter-menu">
+      <mat-form-field appearance="outline" style="margin-left: 10px; margin-right: 5px">
+        <mat-label>Min</mat-label>
+        <input matInput [(ngModel)]="minPriceString">
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="margin-left: 5px; margin-right: 10px">
+        <mat-label>Max</mat-label>
+        <input matInput [(ngModel)]="maxPriceString">
+      </mat-form-field>
+    </div>
+
+    <br>
+    <div class="filter-menu">
+      <button style="width: 100px;" (click)="filter()" mat-raised-button>Filter</button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content style="padding: 30px">
+    <div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: start; gap: 10px 10px">
+        <app-product *ngFor="let product of products" [product]="product" style="width: 280px;"/>
+      </div>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+

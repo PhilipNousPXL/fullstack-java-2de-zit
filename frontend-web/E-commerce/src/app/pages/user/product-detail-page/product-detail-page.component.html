@@ -1,0 +1,45 @@
+<div style="display: flex; flex-direction: row; align-items: center; height: 100%;" *ngIf="product">
+
+  <div class="row-item" style="display: flex; justify-content: center">
+    <div>
+      <h1 style="font-weight: bolder">{{product.name}}</h1>
+      <h2>{{product.category.toString() | titlecase}}</h2>
+      <p>{{product.description}}</p>
+      <p>{{product.price | currency : 'EUR'}}</p>
+      <ul *ngFor="let criteria of product!.sustainabilityCriteria">
+        <li>
+          <p>{{criteria.type | titlecase | replace: '_': ' '}} ({{criteria.score}})</p>
+        </li>
+      </ul>
+      <mat-chip-set role="list">
+        <mat-chip *ngFor="let label of productLabels" role="listitem">{{label}}</mat-chip>
+      </mat-chip-set>
+    </div>
+
+
+  </div>
+
+
+  <div class="row-item" style="padding: 0 1rem 0 1rem">
+    <div style="display:flex; flex-direction: column">
+      <h3>Amount: {{amount}}</h3>
+      <br>
+      <button (click)="add()" mat-stroked-button style="width: 100px">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button (click)="substract()" mat-stroked-button style="width: 100px">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+
+    <button (click)="wishList()" mat-stroked-button>
+      Wish list
+    </button>
+    <button (click)="order()" mat-stroked-button>
+      Buy
+    </button>
+  </div>
+
+
+</div>
+

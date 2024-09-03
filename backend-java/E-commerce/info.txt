@@ -1,0 +1,16 @@
+ports services:
+- config = 2000
+- gateway = 2001
+- discovery = 8761
+- prod catalog = 2002 http://localhost:2002/swagger-ui/index.html
+- shopping cart = 2003 http://localhost:2003/swagger-ui/index.html
+- logbook = 2004 http://localhost:2004/swagger-ui/index.html
+- wish-list = 2006
+
+
+ports databases:
+- discovery = 3002
+- prod catalog = 3003
+- shopping cart = 3004
+- log book = 3005
+- wish-list = 3006

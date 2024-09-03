@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>The sustainable store</span>
+    <a class="link" [routerLink]="['catalog']">Catalog</a>
+    <a class="link" [routerLink]="['wish-list']">Wish list</a>
+    <span style="flex: 1 1 auto;"></span>
+    <button (click)="showShoppingCart()" mat-icon-button>
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <button (click)="logOut()" mat-icon-button>
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

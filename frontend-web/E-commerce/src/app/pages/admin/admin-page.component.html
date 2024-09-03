@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>The sustainable store</span>
+    <a class="link" [routerLink]="['/admin']">Products</a>
+    <a class="link" [routerLink]="['/admin/logbook']">Logbook</a>
+    <span style="flex: 1 1 auto;"></span>
+    <button (click)="logOut()" mat-icon-button>
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

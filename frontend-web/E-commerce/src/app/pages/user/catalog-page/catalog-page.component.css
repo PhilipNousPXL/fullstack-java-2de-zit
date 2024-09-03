@@ -1,0 +1,9 @@
+.filter-title {
+  text-align: center;
+  font-size: 18px;
+}
+
+.filter-menu {
+  display: flex;
+  justify-content: center;
+}

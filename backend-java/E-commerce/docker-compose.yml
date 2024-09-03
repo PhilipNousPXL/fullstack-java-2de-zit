@@ -1,0 +1,73 @@
+version: '3.7'
+
+services:
+  product-catalog-db:
+    container_name: 'product-catalog-db'
+    image: mysql:8-debian
+    ports:
+      - '3003:3306'
+    environment:
+      MYSQL_DATABASE: 'product-catalog-db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'admin'
+    security_opt:
+      - seccomp:unconfined
+
+  rabbitmq:
+    container_name: rabbitmq
+    # default username and password: guest
+    # http://localhost:15672
+    image: rabbitmq:3.12-management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  discovery-db:
+    image: mysql:8-debian
+    ports:
+      # host system port:internal container port
+      - '3002:3306'
+    environment:
+      MYSQL_DATABASE: 'discovery-service-db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'admin'
+    security_opt:
+      - seccomp:unconfined
+
+  shopping-cart-db:
+    image: mysql:8-debian
+    ports:
+      - '3004:3306'
+    environment:
+      MYSQL_DATABASE: 'shopping-cart-db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'admin'
+    security_opt:
+      - seccomp:unconfined
+
+  log-book-db:
+    image: mysql:8-debian
+    ports:
+      - '3005:3306'
+    environment:
+      MYSQL_DATABASE: 'log-book-db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'admin'
+    security_opt:
+      - seccomp:unconfined
+
+  wish-list-db:
+    image: mysql:8-debian
+    ports:
+      - '3006:3306'
+    environment:
+      MYSQL_DATABASE: 'wish-list-db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'admin'
+    security_opt:
+      - seccomp:unconfined

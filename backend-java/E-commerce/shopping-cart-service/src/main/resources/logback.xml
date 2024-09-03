@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--std config for logback from springboot-->
+    <!--default console logging (NAME="CONSOLE")-->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!--variable with name LOG_PATH and value ./logs/-->
+    <property name="LOG_PATH" value="./logs/shopping-cart"/>
+
+    <appender name="APP_LOGGER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/app.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <Pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSZZ} %-5level %-12X{process} %-30([%thread]) %-29logger - %m%n</Pattern>
+        </encoder>
+
+    </appender>
+
+
+    <!--Logger in the package be.pxl log everything higher than DEBUG but not DEBUG itself and below-->
+    <!--error > warn > info > debug > trace-->
+    <logger name="be.pxl" level="TRACE" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="APP_LOGGER"/>
+    </logger>
+</configuration>
+

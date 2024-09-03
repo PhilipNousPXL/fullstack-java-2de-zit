@@ -1,0 +1,18 @@
+<mat-card style="height: 300px;">
+  <mat-card-header>
+    <mat-card-title>{{product.name}}</mat-card-title>
+    <mat-card-subtitle>{{product.category.toString() | titlecase }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p style="word-wrap: break-word;">{{product.description | limit: 100}}</p>
+    <p>{{product.price | currency: 'EUR'}}  eur</p>
+    <ul *ngFor="let criteria of product!.sustainabilityCriteria">
+      <li>
+        <p>{{criteria.type | titlecase | replace: '_': ' '}} ({{criteria.score}})</p>
+      </li>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="viewProduct()" mat-button>View</button>
+  </mat-card-actions>
+</mat-card>
